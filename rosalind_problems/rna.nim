@@ -1,14 +1,11 @@
+# read in file of DNA nucleotides and convert to RNA nucleotides
+
 import os
 import strutils
 
-proc readfile(input: string): string =
-    # read in file as string from command args
-    let f = open(input, fmRead)
-    result = ""
-    for line in f.lines:
-        result.add(line)
+let
+  f = open(paramStr(1), fmRead)
 
+for line in f.lines:
+    echo line.replace("T", "U")
 
-var seq = readfile(paramStr(1))
-
-echo seq.replace("T", "U")
