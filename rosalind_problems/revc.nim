@@ -9,13 +9,13 @@ proc readfile(input: string): string =
         result.add(line)
 
 
-proc reverse(sequence: string): string =
+proc reverse*(sequence: string): string =
     result = newString(sequence.len)
     for index, nucleotide in sequence:
         result[sequence.high - index] = nucleotide
 
 
-proc complement(sequence: string): string =
+proc complement*(sequence: string): string =
     result = ""
     var cnuc: char
     for nuc in sequence:
@@ -29,12 +29,9 @@ proc complement(sequence: string): string =
             cnuc = 'T'
         else:
             echo "ERROR! invalid nucleotide"
+            echo nuc
             break
         result.add(cnuc)
 
-
-let seq = readfile(paramStr(1))
-
-let ans = reverse(complement(seq))
-
-echo ans
+proc reverse_complement*(sequence: string): string =
+    return sequence.reverse.complement
