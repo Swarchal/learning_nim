@@ -12,14 +12,13 @@ proc readfile(input: string): string =
 
 proc possible_window_sizes(min: int = 4, max: int = 12): seq[int] =
   result = @[]
-  var count = min
-  while count <= max:
-    result.add(count)
-    count += 2
+  for i in min..max:
+    if i mod 2 == 0:
+      result.add(i)
 
 
 proc is_restriction_site(s: string): bool =
-  var
+  let
     first_half  = s[0..s.high div 2]
     second_half = s[s.len div 2..s.len]
   return first_half == second_half.reverse_complement
